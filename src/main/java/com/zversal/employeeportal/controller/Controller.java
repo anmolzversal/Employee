@@ -33,14 +33,16 @@ public class Controller
             JsonElement urole = data.get("role");
             int id = uid.getAsInt();
             String name = uname.getAsString();
-            String department = urole.getAsString();
-            return employeedao.create(id, "name", "role");
+            String role = urole.getAsString();
+            getDetails.put("Result:",employeedao.create(id, "name", "role"));
+            return getDetails;
 
          }
         catch(Exception e) 
         {
-            return getDetails.put("Error:", "Not Available" );
+            getDetails.put("Error:", "Not Available" );
         }
+		return "Error";
 	};
 	
 	public static final Route delete = (req,res) -> {
@@ -70,11 +72,13 @@ public class Controller
 			int id = uid.getAsInt();
 			String name = uname.getAsString();
 			String role = urole.getAsString();
-			return employeedao.update(id, "name", "role");
+			getDetails.put("Result:",employeedao.update(id, "name", "role"));
+            return getDetails;
 		}
 		 catch(NumberFormatException e)
 		 {
-			 return getDetails.put("Error:","Not Available");
+			 getDetails.put("Error:","Not Available");
 		 }
+		return "Error";
 	};
 }

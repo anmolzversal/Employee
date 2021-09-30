@@ -5,11 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.HashMap;
 public class EmployeeDao {
-	public static void main(String[] args)
-	{
-		EmployeeDao ob=new EmployeeDao();
-		System.out.print(ob.read(101));
-	}
 	DatabaseManager db=new DatabaseManager();
 	public HashMap<Object,Object> read(int id)
 	{
@@ -45,13 +40,13 @@ public class EmployeeDao {
 	                stmnt.setString(2, name);
 	                stmnt.setString(3, role);
 	                stmnt.executeUpdate();
-	                return "Insertion Successful";
+	                return "Insertion succesful";
 	                
 	                
 	            }
 	       }
 	    	catch(Exception e){
-	    		return ""+e;
+	    		return "Error"+e;
 	    	}
 			return "Error";
 	    
@@ -72,7 +67,7 @@ public class EmployeeDao {
 	            }
 	       }
 	    	catch(Exception e){
-	    		return ""+e;
+	    		return "Error";
 	    	}
 			return "Error";
 	  }
