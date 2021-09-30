@@ -1,42 +1,46 @@
-package portal.dao;
-import java.sql.*;
-import java.sql.DriverManager;
+package com.zversal.employeeeportal.dao;
+
+import com.zversal.employeeportal.db.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.HashMap;
-public class Dao {
-	static Connection con = null;
-	static PreparedStatement stmnt=null;
+public class EmployeeDao {
+	public static void main(String[] args)
+	{
+		EmployeeDao ob=new EmployeeDao();
+		System.out.print(ob.read(101));
+	}
+	DatabaseManager db=new DatabaseManager();
 	public HashMap<Object,Object> read(int id)
 	{
-		HashMap<Object,Object> hm=new HashMap<Object,Object>();
+		HashMap<Object,Object> getDetails=new HashMap<Object,Object>();
 		try {
-			con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3308/employee","root","Anmol@3004");
-			if (con != null) {
-				PreparedStatement stmnt = (PreparedStatement) con.prepareStatement("select id,name,role from user where id=?");
+			if (db.getConnection() != null) {
+				PreparedStatement stmnt = db.getConnection().prepareStatement("select id,name,role from user where id=?");
 				stmnt.setInt(1, id);
 				ResultSet set =  stmnt.executeQuery();
 				 if(set.next()) {
-					 hm.put("id",set.getInt("id"));
-					 hm.put("name",set.getString("name"));
-					 hm.put("role",set.getString("role"));
-					 return  hm;
+					 getDetails.put("id",set.getInt("id"));
+					 getDetails.put("name",set.getString("name"));
+					 getDetails.put("role",set.getString("role"));
+					 return  getDetails;
 				}
 				 
 			}
 	}
 		catch(Exception e)
 		{
-			hm.put("Error",e);
-			return hm;
+			getDetails.put("Error",e);
+			return getDetails;
 		}
-		hm.put("Error",null);
-		return hm;
+		getDetails.put("Error",null);
+		return getDetails;
 }
 	  public String create(int id, String name, String role) {
 	    	
 	    	try {
-	       	    con = DriverManager.getConnection("jdbc:mysql://localhost:3308/employee","root","Anmol@3004");
-	            if(con!=null){
-	                PreparedStatement stmnt = con.prepareStatement("insert into user values(?,?,?) ");
+	            if(db.getConnection()!=null){
+	                PreparedStatement stmnt = db.getConnection().prepareStatement("insert into user values(?,?,?) ");
 	                stmnt.setInt(1, id);
 	                stmnt.setString(2, name);
 	                stmnt.setString(3, role);
@@ -56,9 +60,8 @@ public class Dao {
 	  public String update(int id,String name,String role)
 	  {
 		  try {
-	       	    con = DriverManager.getConnection("jdbc:mysql://localhost:3308/employee","root","Anmol@3004");
-	            if(con!=null){
-	                PreparedStatement stmnt = con.prepareStatement("update user set name=?,role=? where id=? ");
+	            if(db.getConnection()!=null){
+	                PreparedStatement stmnt = db.getConnection().prepareStatement("update user set name=?,role=? where id=? ");
 	                stmnt.setInt(3, id);
 	                stmnt.setString(1, name);
 	                stmnt.setString(2, role);
@@ -76,9 +79,8 @@ public class Dao {
 	  public String delete(int id)
 	  {
 		  try {
-	       	    con = DriverManager.getConnection("jdbc:mysql://localhost:3308/employee","root","Anmol@3004");
-	            if(con!=null){
-	                PreparedStatement stmnt = con.prepareStatement("delete from user where id=?");
+	            if(db.getConnection()!=null){
+	                PreparedStatement stmnt = db.getConnection().prepareStatement("delete from user where id=?");
 	                stmnt.setInt(1, id);
 	                stmnt.executeUpdate();
 	                return "Deletion Successful";
