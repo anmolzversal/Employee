@@ -10,8 +10,8 @@ public class EmployeeDao {
 	{
 		HashMap<Object,Object> getDetails=new HashMap<Object,Object>();
 		try {
-			if (db.getConnection() != null) {
-				PreparedStatement stmnt = db.getConnection().prepareStatement("select id,name,role from user where id=?");
+			if (db.con != null) {
+				PreparedStatement stmnt = db.con.prepareStatement("select id,name,role from user where id=?");
 				stmnt.setInt(1, id);
 				ResultSet set =  stmnt.executeQuery();
 				 if(set.next()) {
@@ -34,8 +34,8 @@ public class EmployeeDao {
 	  public String create(int id, String name, String role) {
 	    	
 	    	try {
-	            if(db.getConnection()!=null){
-	                PreparedStatement stmnt = db.getConnection().prepareStatement("insert into user values(?,?,?) ");
+	            if(db.con!=null){
+	                PreparedStatement stmnt = db.con.prepareStatement("insert into user values(?,?,?) ");
 	                stmnt.setInt(1, id);
 	                stmnt.setString(2, name);
 	                stmnt.setString(3, role);
@@ -46,7 +46,7 @@ public class EmployeeDao {
 	            }
 	       }
 	    	catch(Exception e){
-	    		return "Error"+e;
+	    		return "Error";
 	    	}
 			return "Error";
 	    
@@ -55,8 +55,8 @@ public class EmployeeDao {
 	  public String update(int id,String name,String role)
 	  {
 		  try {
-	            if(db.getConnection()!=null){
-	                PreparedStatement stmnt = db.getConnection().prepareStatement("update user set name=?,role=? where id=? ");
+	            if(db.con!=null){
+	                PreparedStatement stmnt = db.con.prepareStatement("update user set name=?,role=? where id=? ");
 	                stmnt.setInt(3, id);
 	                stmnt.setString(1, name);
 	                stmnt.setString(2, role);
@@ -74,8 +74,8 @@ public class EmployeeDao {
 	  public String delete(int id)
 	  {
 		  try {
-	            if(db.getConnection()!=null){
-	                PreparedStatement stmnt = db.getConnection().prepareStatement("delete from user where id=?");
+	            if(db.con!=null){
+	                PreparedStatement stmnt = db.con.prepareStatement("delete from user where id=?");
 	                stmnt.setInt(1, id);
 	                stmnt.executeUpdate();
 	                return "Deletion Successful";
@@ -84,7 +84,7 @@ public class EmployeeDao {
 	            }
 	       }
 	    	catch(Exception e){
-	    		return ""+e;
+	    		return "Error";
 	    	}
 			return "Error";
 	  }
