@@ -4,8 +4,8 @@ import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import com.google.gson.Gson;
+import com.zversal.employeeportal.Main;
 
-import com.zversal.employeeeportal.dao.EmployeeDao;
 import spark.Route;
 
 public class Controller
@@ -15,9 +15,8 @@ public class Controller
 	public String role=null;
 	public static Gson gson=new Gson();
 	private static Logger logger = Logger.getLogger("log.txt"); 
-	public static final EmployeeDao employeedao=new EmployeeDao();
+	public static Main main=new Main();
 	static HashMap<Object,Object> getEmployeeDetails=new HashMap<>();
-	
 	public static void init(){
         FileHandler fh;
         try{
@@ -36,7 +35,7 @@ public class Controller
 		try
 		{
 			int id=Integer.parseInt(uid);
-			getEmployeeDetails= employeedao.read(id);
+			getEmployeeDetails= main.employeedao.read(id);
 			return getEmployeeDetails;
 		}
 		catch(Exception e)
@@ -52,7 +51,7 @@ public class Controller
         {
             String val = req.body();
             Controller format=gson.fromJson(val,Controller.class);
-            getEmployeeDetails.put("Result:",employeedao.create(format.id, format.name, format.role));
+            getEmployeeDetails.put("Result:",main.employeedao.create(format.id, format.name, format.role));
             return getEmployeeDetails;
 
          }
@@ -69,7 +68,7 @@ public class Controller
 		try {
 			String uid=req.params("id");
 			int id = Integer.parseInt(uid);
-			getEmployeeDetails.put("Delete",employeedao.delete(id));
+			getEmployeeDetails.put("Delete",main.employeedao.delete(id));
 			return getEmployeeDetails;
 		} 
 		catch (Exception e)
@@ -86,7 +85,7 @@ public class Controller
 		try {
 			String val = req.body();
             Controller format=gson.fromJson(val,Controller.class);
-			getEmployeeDetails.put("Result:",employeedao.update(format.id, format.name, format.role));
+			getEmployeeDetails.put("Result:",main.employeedao.update(format.id, format.name, format.role));
             return getEmployeeDetails;
 		}
 		 catch(Exception e)

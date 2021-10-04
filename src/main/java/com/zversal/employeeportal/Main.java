@@ -21,8 +21,8 @@ import com.zversal.employeeportal.db.DatabaseManager;
 public class Main {
 	public static Gson gs=new Gson();
 	public static Gson gson=new GsonBuilder().create();
-	public static final EmployeeDao employeedao=new EmployeeDao();
-	public static final Controller controller=new Controller();
+	public EmployeeDao employeedao=new EmployeeDao();
+	public static Controller controller=new Controller();
 	public static DatabaseManager portConnection=new DatabaseManager();
     public static void main(String[] args) {
 		port(portConnection.port);
