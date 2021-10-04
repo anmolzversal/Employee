@@ -16,7 +16,7 @@ public class Controller
 	public static Gson gson=new Gson();
 	private static Logger logger = Logger.getLogger("log.txt"); 
 	public static Main main=new Main();
-	static HashMap<Object,Object> getEmployeeDetails=new HashMap<>();
+	static HashMap<String,Object> getEmployeeDetails=new HashMap<>();
 	public static void init(){
         FileHandler fh;
         try{
@@ -29,13 +29,13 @@ public class Controller
             getEmployeeDetails.put("Error:", "Not Available" );
         }
     }
-	public static final Route read = (req, res) -> {
+	public static final Route readUser = (req, res) -> {
 		init();
 		String uid = req.params("id");
 		try
 		{
 			int id=Integer.parseInt(uid);
-			getEmployeeDetails= main.employeedao.read(id);
+			getEmployeeDetails= main.employeedao.readUser(id);
 			return getEmployeeDetails;
 		}
 		catch(Exception e)
@@ -45,13 +45,13 @@ public class Controller
 			return getEmployeeDetails;
 		}
 };
-	public static final Route create = (req,res) -> {
+	public static final Route createUser = (req,res) -> {
 		init();
 		try 
         {
             String val = req.body();
             Controller format=gson.fromJson(val,Controller.class);
-            getEmployeeDetails.put("Result:",main.employeedao.create(format.id, format.name, format.role));
+            getEmployeeDetails.put("Result:",main.employeedao.createUser(format.id, format.name, format.role));
             return getEmployeeDetails;
 
          }
@@ -63,12 +63,12 @@ public class Controller
         }
 	};
 	
-	public static final Route delete = (req,res) -> {
+	public static final Route deleteUser = (req,res) -> {
 		init();
 		try {
 			String uid=req.params("id");
 			int id = Integer.parseInt(uid);
-			getEmployeeDetails.put("Delete",main.employeedao.delete(id));
+			getEmployeeDetails.put("Delete",main.employeedao.deleteUser(id));
 			return getEmployeeDetails;
 		} 
 		catch (Exception e)
@@ -80,12 +80,12 @@ public class Controller
 		
 	};
 	
-	public static final Route update = (req,res) -> {
+	public static final Route updateUser = (req,res) -> {
 		init();
 		try {
 			String val = req.body();
             Controller format=gson.fromJson(val,Controller.class);
-			getEmployeeDetails.put("Result:",main.employeedao.update(format.id, format.name, format.role));
+			getEmployeeDetails.put("Result:",main.employeedao.updateUser(format.id, format.name, format.role));
             return getEmployeeDetails;
 		}
 		 catch(Exception e)

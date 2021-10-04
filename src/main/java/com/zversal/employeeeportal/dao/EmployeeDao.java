@@ -6,9 +6,9 @@ import java.sql.ResultSet;
 import java.util.HashMap;
 public class EmployeeDao {
 	DatabaseManager db=new DatabaseManager();
-	public HashMap<Object,Object> read(int id)
+	public HashMap<String,Object> readUser(int id)
 	{
-		HashMap<Object,Object> getDetails=new HashMap<Object,Object>();
+		HashMap<String,Object> getDetails=new HashMap<String,Object>();
 		try {
 			if (db.con != null) {
 				PreparedStatement stmnt = db.con.prepareStatement("select id,name,role from user where id=?");
@@ -31,7 +31,7 @@ public class EmployeeDao {
 		getDetails.put("Error",null);
 		return getDetails;
 }
-	  public String create(int id, String name, String role) {
+	  public String createUser(int id, String name, String role) {
 	    	
 	    	try {
 	            if(db.con!=null){
@@ -52,7 +52,7 @@ public class EmployeeDao {
 	    
 	    	
 	    }
-	  public String update(int id,String name,String role)
+	  public String updateUser(int id,String name,String role)
 	  {
 		  try {
 	            if(db.con!=null){
@@ -71,7 +71,7 @@ public class EmployeeDao {
 	    	}
 			return "Error";
 	  }
-	  public String delete(int id)
+	  public String deleteUser(int id)
 	  {
 		  try {
 	            if(db.con!=null){

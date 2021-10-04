@@ -33,10 +33,10 @@ public class Main {
        	    }
     	});
     	path("/user",() -> {
-        get("/read/:id",Controller.read,gson::toJson);
-        post("/create",Controller.create,gson::toJson);
-        put("/update",Controller.update,gson::toJson);
-        delete("/delete/:id",Controller.delete,gson::toJson);
+        get("/read/:id",Controller.readUser,gson::toJson);
+        post("/create",Controller.createUser,gson::toJson);
+        put("/update",Controller.updateUser,gson::toJson);
+        delete("/delete/:id",Controller.deleteUser,gson::toJson);
     });
     	after((request, response) -> {
     	    response.type("application/json");
