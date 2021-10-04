@@ -20,12 +20,13 @@ public class DatabaseManager
 	}
 	
 	public Connection con = null;
+	public int port;
 	public DatabaseManager()
 	{
 			try {
 				 
 				Properties prop = loadPropertiesFile();
-		 
+				port=Integer.parseInt(prop.getProperty("port.con"));
 				String driverClass = prop.getProperty("test.jdbc.dev.driver");
 				String url = prop.getProperty("test.jdbc.dev.url");
 				String username = prop.getProperty("test.jdbc.dev.username");

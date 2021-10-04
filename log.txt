@@ -2,24 +2,13 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2021-10-01T17:48:41</date>
-  <millis>1633090721375</millis>
+  <date>2021-10-04T12:43:02</date>
+  <millis>1633331582386</millis>
   <sequence>0</sequence>
   <logger>log.txt</logger>
   <level>INFO</level>
   <class>com.zversal.employeeportal.controller.Controller</class>
   <method>init</method>
-  <thread>25</thread>
+  <thread>20</thread>
   <message>init</message>
-</record>
-<record>
-  <date>2021-10-01T17:48:41</date>
-  <millis>1633090721379</millis>
-  <sequence>1</sequence>
-  <logger>log.txt</logger>
-  <level>WARNING</level>
-  <class>com.zversal.employeeportal.controller.Controller</class>
-  <method>lambda$0</method>
-  <thread>25</thread>
-  <message>::Exception::java.lang.NumberFormatException: For input string: ""rogav""</message>
 </record>

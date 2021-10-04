@@ -3,7 +3,6 @@ import java.util.HashMap;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import com.google.gson.Gson;
 
 import com.zversal.employeeeportal.dao.EmployeeDao;
@@ -17,7 +16,7 @@ public class Controller
 	public static Gson gson=new Gson();
 	private static Logger logger = Logger.getLogger("log.txt"); 
 	public static final EmployeeDao employeedao=new EmployeeDao();
-	static HashMap<Object,Object> getDetails=new HashMap<>();
+	static HashMap<Object,Object> getEmployeeDetails=new HashMap<>();
 	
 	public static void init(){
         FileHandler fh;
@@ -28,7 +27,7 @@ public class Controller
         }
         catch(Exception e){
             logger.log(Level.WARNING,"::Exception::"+e);
-            getDetails.put("Error:", "Not Available" );
+            getEmployeeDetails.put("Error:", "Not Available" );
         }
     }
 	public static final Route read = (req, res) -> {
@@ -37,14 +36,14 @@ public class Controller
 		try
 		{
 			int id=Integer.parseInt(uid);
-			getDetails= employeedao.read(id);
-			return getDetails;
+			getEmployeeDetails= employeedao.read(id);
+			return getEmployeeDetails;
 		}
 		catch(Exception e)
 		{
 			logger.log(Level.WARNING,"::Exception::"+e);
-			getDetails.put("Error:", "Not Available" );
-			return getDetails;
+			getEmployeeDetails.put("Error:", "Not Available" );
+			return getEmployeeDetails;
 		}
 };
 	public static final Route create = (req,res) -> {
@@ -53,15 +52,15 @@ public class Controller
         {
             String val = req.body();
             Controller format=gson.fromJson(val,Controller.class);
-            getDetails.put("Result:",employeedao.create(format.id, format.name, format.role));
-            return getDetails;
+            getEmployeeDetails.put("Result:",employeedao.create(format.id, format.name, format.role));
+            return getEmployeeDetails;
 
          }
         catch(Exception e) 
         {
         	logger.log(Level.WARNING,"::Exception::"+e);
-        	getDetails.put("Error:", "Not Available" );
-        	return getDetails;
+        	getEmployeeDetails.put("Error:", "Not Available" );
+        	return getEmployeeDetails;
         }
 	};
 	
@@ -70,14 +69,14 @@ public class Controller
 		try {
 			String uid=req.params("id");
 			int id = Integer.parseInt(uid);
-			getDetails.put("Delete",employeedao.delete(id));
-			return getDetails;
+			getEmployeeDetails.put("Delete",employeedao.delete(id));
+			return getEmployeeDetails;
 		} 
 		catch (Exception e)
 		{
 			logger.log(Level.WARNING,"::Exception::"+e);
-			getDetails.put("Error:", "Not Available" );
-			return getDetails;
+			getEmployeeDetails.put("Error:", "Not Available" );
+			return getEmployeeDetails;
 		}
 		
 	};
@@ -87,14 +86,14 @@ public class Controller
 		try {
 			String val = req.body();
             Controller format=gson.fromJson(val,Controller.class);
-			getDetails.put("Result:",employeedao.update(format.id, format.name, format.role));
-            return getDetails;
+			getEmployeeDetails.put("Result:",employeedao.update(format.id, format.name, format.role));
+            return getEmployeeDetails;
 		}
 		 catch(Exception e)
 		 {
 			 logger.log(Level.WARNING,"::Exception::"+e);
-			 getDetails.put("Error:", "Not Available" );
-			 return getDetails;
+			 getEmployeeDetails.put("Error:", "Not Available" );
+			 return getEmployeeDetails;
 		 }
 	};
 }

@@ -7,6 +7,7 @@ import static spark.Spark.path;
 import static spark.Spark.get;
 import static spark.Spark.post;
 import static spark.Spark.put;
+
 import static spark.Spark.delete;
 import static spark.Spark.port;
 
@@ -14,6 +15,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.zversal.employeeeportal.dao.EmployeeDao;
 import com.zversal.employeeportal.controller.Controller;
+import com.zversal.employeeportal.db.DatabaseManager;
 
 
 public class Main {
@@ -21,8 +23,9 @@ public class Main {
 	public static Gson gson=new GsonBuilder().create();
 	public static final EmployeeDao employeedao=new EmployeeDao();
 	public static final Controller controller=new Controller();
+	public static DatabaseManager portConnection=new DatabaseManager();
     public static void main(String[] args) {
-    	port(8080);
+		port(portConnection.port);
     	before((request, response) -> {
        	    boolean authenticated = true;
        	    if (!authenticated) {
