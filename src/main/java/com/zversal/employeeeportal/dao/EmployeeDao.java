@@ -42,7 +42,6 @@ public class EmployeeDao {
 	                stmnt.executeUpdate();
 	                return "Insertion succesful";
 	                
-	                
 	            }
 	       }
 	    	catch(Exception e){

@@ -42,7 +42,7 @@ public class Controller
 		{
 			logger.log(Level.WARNING,"::Exception::"+e);
 			getEmployeeDetails.put("Error:", "Not Available" );
-			return getEmployeeDetails;
+			return getEmployeeDetails.get("Error:");
 		}
 };
 	public static final Route createUser = (req,res) -> {
@@ -51,15 +51,15 @@ public class Controller
         {
             String val = req.body();
             Controller format=gson.fromJson(val,Controller.class);
-            getEmployeeDetails.put("Result:",main.employeedao.createUser(format.id, format.name, format.role));
-            return getEmployeeDetails;
+            getEmployeeDetails.put("Addition Result:",main.employeedao.createUser(format.id, format.name, format.role));
+            return getEmployeeDetails.get("Addition Result:");
 
          }
         catch(Exception e) 
         {
         	logger.log(Level.WARNING,"::Exception::"+e);
         	getEmployeeDetails.put("Error:", "Not Available" );
-        	return getEmployeeDetails;
+        	return getEmployeeDetails.get("Error:");
         }
 	};
 	
@@ -68,14 +68,14 @@ public class Controller
 		try {
 			String uid=req.params("id");
 			int id = Integer.parseInt(uid);
-			getEmployeeDetails.put("Delete",main.employeedao.deleteUser(id));
-			return getEmployeeDetails;
+			getEmployeeDetails.put("Deletion Result:",main.employeedao.deleteUser(id));
+			return getEmployeeDetails.get("Deletion Result:");
 		} 
 		catch (Exception e)
 		{
 			logger.log(Level.WARNING,"::Exception::"+e);
 			getEmployeeDetails.put("Error:", "Not Available" );
-			return getEmployeeDetails;
+			return getEmployeeDetails.get("Error:");
 		}
 		
 	};
@@ -85,14 +85,14 @@ public class Controller
 		try {
 			String val = req.body();
             Controller format=gson.fromJson(val,Controller.class);
-			getEmployeeDetails.put("Result:",main.employeedao.updateUser(format.id, format.name, format.role));
-            return getEmployeeDetails;
+			getEmployeeDetails.put("Updation Result:",main.employeedao.updateUser(format.id, format.name, format.role));
+            return getEmployeeDetails.get("Updation Result:");
 		}
 		 catch(Exception e)
 		 {
 			 logger.log(Level.WARNING,"::Exception::"+e);
 			 getEmployeeDetails.put("Error:", "Not Available" );
-			 return getEmployeeDetails;
+			 return getEmployeeDetails.get("Error:");
 		 }
 	};
 }
