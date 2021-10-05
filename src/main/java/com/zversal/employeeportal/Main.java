@@ -16,16 +16,18 @@ import com.google.gson.GsonBuilder;
 import com.zversal.employeeeportal.dao.EmployeeDao;
 import com.zversal.employeeportal.controller.Controller;
 import com.zversal.employeeportal.db.DatabaseManager;
+import com.zversal.employeeportal.util.LoggerUtil;
 
 
 public class Main {
 	public static Gson gs=new Gson();
 	public static Gson gson=new GsonBuilder().create();
-	public EmployeeDao employeedao=new EmployeeDao();
+	public static EmployeeDao employeedao=new EmployeeDao();
 	public static Controller controller=new Controller();
-	public static DatabaseManager portConnection=new DatabaseManager();
+	public static LoggerUtil loggerutil=new LoggerUtil();
+	public static DatabaseManager db=new DatabaseManager();
     public static void main(String[] args) {
-		port(portConnection.port);
+		port(db.port); //
     	before((request, response) -> {
        	    boolean authenticated = true;
        	    if (!authenticated) {
@@ -33,7 +35,7 @@ public class Main {
        	    }
     	});
     	path("/user",() -> {
-        get("/read/:id",Controller.readUser,gson::toJson);
+        get("/read/:id",Controller.readById,gson::toJson);
         post("/create",Controller.createUser,gson::toJson);
         put("/update",Controller.updateUser,gson::toJson);
         delete("/delete/:id",Controller.deleteUser,gson::toJson);

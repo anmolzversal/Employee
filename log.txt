@@ -2,24 +2,24 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2021-10-05T12:13:24</date>
-  <millis>1633416204034</millis>
+  <date>2021-10-05T17:43:52</date>
+  <millis>1633436032099</millis>
   <sequence>0</sequence>
   <logger>log.txt</logger>
   <level>INFO</level>
-  <class>com.zversal.employeeportal.controller.Controller</class>
-  <method>init</method>
-  <thread>21</thread>
+  <class>com.zversal.employeeportal.util.LoggerUtil</class>
+  <method>getLog</method>
+  <thread>22</thread>
   <message>init</message>
 </record>
 <record>
-  <date>2021-10-05T12:13:33</date>
-  <millis>1633416213156</millis>
+  <date>2021-10-05T17:43:52</date>
+  <millis>1633436032105</millis>
   <sequence>1</sequence>
   <logger>log.txt</logger>
-  <level>INFO</level>
+  <level>WARNING</level>
   <class>com.zversal.employeeportal.controller.Controller</class>
-  <method>init</method>
-  <thread>24</thread>
-  <message>init</message>
+  <method>lambda$0</method>
+  <thread>22</thread>
+  <message>::Exception::java.lang.NumberFormatException: For input string: "raghav"</message>
 </record>

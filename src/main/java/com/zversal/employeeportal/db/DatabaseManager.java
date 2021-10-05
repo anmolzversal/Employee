@@ -20,7 +20,7 @@ public class DatabaseManager
 		return prop;
 	}
 	
-	public Connection con = null;
+	private Connection con = null;
 	public int port;
 	private static HikariDataSource dataSource;
 	public DatabaseManager()
@@ -36,7 +36,7 @@ public class DatabaseManager
 				dataSource.setUsername(prop.getProperty("test.jdbc.dev.username"));
 				dataSource.setPassword(prop.getProperty("test.jdbc.dev.password"));
 		 
-				con = dataSource.getConnection();
+				this.con = dataSource.getConnection();
 				
 				}catch (SQLException e) {
 				e.printStackTrace();
@@ -45,5 +45,9 @@ public class DatabaseManager
 				e.printStackTrace();
 				} 
 		}
+	public Connection getConnection() {
+		return this.con;
+	}
+	
 	}
 

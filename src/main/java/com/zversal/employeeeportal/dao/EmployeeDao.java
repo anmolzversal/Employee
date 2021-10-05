@@ -1,23 +1,26 @@
 package com.zversal.employeeeportal.dao;
 
-import com.zversal.employeeportal.db.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.HashMap;
+
+import static com.zversal.employeeportal.Main.loggerutil;
+import static com.zversal.employeeportal.Main.db;
 public class EmployeeDao {
-	DatabaseManager db=new DatabaseManager();
 	public HashMap<String,Object> readUser(int id)
 	{
+		
 		HashMap<String,Object> getDetails=new HashMap<String,Object>();
 		try {
-			if (db.con != null) {
-				PreparedStatement stmnt = db.con.prepareStatement("select id,name,role from user where id=?");
+			if (db.getConnection() != null) {
+				PreparedStatement stmnt = db.getConnection().prepareStatement("select id,name,role from user where id=?");
 				stmnt.setInt(1, id);
 				ResultSet set =  stmnt.executeQuery();
 				 if(set.next()) {
 					 getDetails.put("id",set.getInt("id"));
 					 getDetails.put("name",set.getString("name"));
 					 getDetails.put("role",set.getString("role"));
+					 loggerutil.logger.info(stmnt.toString());
 					 return  getDetails;
 				}
 				 
@@ -34,12 +37,13 @@ public class EmployeeDao {
 	  public String createUser(int id, String name, String role) {
 	    	
 	    	try {
-	            if(db.con!=null){
-	                PreparedStatement stmnt = db.con.prepareStatement("insert into user values(?,?,?) ");
+	            if(db.getConnection()!=null){
+	                PreparedStatement stmnt = db.getConnection().prepareStatement("insert into user values(?,?,?) ");
 	                stmnt.setInt(1, id);
 	                stmnt.setString(2, name);
 	                stmnt.setString(3, role);
 	                stmnt.executeUpdate();
+	                loggerutil.logger.info(stmnt.toString());
 	                return "Insertion succesful";
 	                
 	            }
@@ -54,12 +58,13 @@ public class EmployeeDao {
 	  public String updateUser(int id,String name,String role)
 	  {
 		  try {
-	            if(db.con!=null){
-	                PreparedStatement stmnt = db.con.prepareStatement("update user set name=?,role=? where id=? ");
+	            if(db.getConnection()!=null){
+	                PreparedStatement stmnt = db.getConnection().prepareStatement("update user set name=?,role=? where id=? ");
 	                stmnt.setInt(3, id);
 	                stmnt.setString(1, name);
 	                stmnt.setString(2, role);
 	                stmnt.executeUpdate();
+	                loggerutil.logger.info(stmnt.toString());
 	                return "Update Successful";
 	                
 	                
@@ -73,10 +78,11 @@ public class EmployeeDao {
 	  public String deleteUser(int id)
 	  {
 		  try {
-	            if(db.con!=null){
-	                PreparedStatement stmnt = db.con.prepareStatement("delete from user where id=?");
+	            if(db.getConnection()!=null){
+	                PreparedStatement stmnt = db.getConnection().prepareStatement("delete from user where id=?");
 	                stmnt.setInt(1, id);
 	                stmnt.executeUpdate();
+	                loggerutil.logger.info(stmnt.toString());
 	                return "Deletion Successful";
 	                
 	                
