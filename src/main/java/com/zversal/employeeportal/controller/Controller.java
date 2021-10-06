@@ -11,7 +11,6 @@ import spark.Route;
 public class Controller
 {
 	public static final Route readById = (req, res) -> {
-		loggerutil.getLog();
 		HashMap<String,Object> map=new HashMap<>();
 		try
 		{
@@ -28,7 +27,6 @@ public class Controller
 		}
 };
 	public static final Route createUser = (req,res) -> {
-		loggerutil.getLog();
 		HashMap<String,Object> map=new HashMap<>();
 		try 
         {
@@ -47,7 +45,6 @@ public class Controller
 	};
 	
 	public static final Route deleteUser = (req,res) -> {
-		loggerutil.getLog();
 		HashMap<String,Object> map=new HashMap<>();
 		try {
 			String uid=req.params("id");
@@ -65,7 +62,6 @@ public class Controller
 	};
 	
 	public static final Route updateUser = (req,res) -> {
-		loggerutil.getLog();
 		HashMap<String,Object> map=new HashMap<>();
 		try {
 			String val = req.body();

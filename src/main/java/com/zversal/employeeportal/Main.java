@@ -29,6 +29,7 @@ public class Main {
 	public static LoggerUtil loggerutil=new LoggerUtil();
 	public static DatabaseManager db=new DatabaseManager();
     public static void main(String[] args) {
+    	loggerutil.getLog();
 		port(propertyreader.getPort()); //
     	before((request, response) -> {
        	    boolean authenticated = true;

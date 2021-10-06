@@ -5,8 +5,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 public class LoggerUtil 
 {
-	public static Logger logger=Logger.getLogger("log.txt");
-	public static void getLog()
+	public Logger logger=Logger.getLogger("log.txt");
+	public void getLog()
 	{
 		FileHandler filehandler;
         try{
