@@ -17,17 +17,19 @@ import com.zversal.employeeeportal.dao.EmployeeDao;
 import com.zversal.employeeportal.controller.Controller;
 import com.zversal.employeeportal.db.DatabaseManager;
 import com.zversal.employeeportal.util.LoggerUtil;
+import com.zversal.employeeportal.util.PropertyReader;
 
 
 public class Main {
 	public static Gson gs=new Gson();
 	public static Gson gson=new GsonBuilder().create();
 	public static EmployeeDao employeedao=new EmployeeDao();
+	public static PropertyReader propertyreader = new PropertyReader();
 	public static Controller controller=new Controller();
 	public static LoggerUtil loggerutil=new LoggerUtil();
 	public static DatabaseManager db=new DatabaseManager();
     public static void main(String[] args) {
-		port(db.port); //
+		port(propertyreader.getPort()); //
     	before((request, response) -> {
        	    boolean authenticated = true;
        	    if (!authenticated) {

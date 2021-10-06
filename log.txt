@@ -2,8 +2,8 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2021-10-05T17:43:52</date>
-  <millis>1633436032099</millis>
+  <date>2021-10-06T10:34:21</date>
+  <millis>1633496661631</millis>
   <sequence>0</sequence>
   <logger>log.txt</logger>
   <level>INFO</level>
@@ -13,13 +13,13 @@
   <message>init</message>
 </record>
 <record>
-  <date>2021-10-05T17:43:52</date>
-  <millis>1633436032105</millis>
+  <date>2021-10-06T10:34:21</date>
+  <millis>1633496661693</millis>
   <sequence>1</sequence>
   <logger>log.txt</logger>
-  <level>WARNING</level>
-  <class>com.zversal.employeeportal.controller.Controller</class>
-  <method>lambda$0</method>
+  <level>INFO</level>
+  <class>com.zversal.employeeeportal.dao.EmployeeDao</class>
+  <method>readUser</method>
   <thread>22</thread>
-  <message>::Exception::java.lang.NumberFormatException: For input string: "raghav"</message>
+  <message>HikariProxyPreparedStatement@866161051 wrapping com.mysql.cj.jdbc.ClientPreparedStatement: select id,name,role from user where id=101</message>
 </record>
