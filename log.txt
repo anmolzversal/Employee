@@ -2,24 +2,24 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2021-10-06T10:50:45</date>
-  <millis>1633497645955</millis>
+  <date>2021-10-07T15:56:54</date>
+  <millis>1633602414661</millis>
   <sequence>0</sequence>
   <logger>log.txt</logger>
   <level>INFO</level>
   <class>com.zversal.employeeportal.util.LoggerUtil</class>
   <method>getLog</method>
-  <thread>22</thread>
+  <thread>1</thread>
   <message>init</message>
 </record>
 <record>
-  <date>2021-10-06T10:50:46</date>
-  <millis>1633497646003</millis>
+  <date>2021-10-07T15:56:58</date>
+  <millis>1633602418427</millis>
   <sequence>1</sequence>
   <logger>log.txt</logger>
   <level>INFO</level>
   <class>com.zversal.employeeeportal.dao.EmployeeDao</class>
   <method>readUser</method>
-  <thread>22</thread>
-  <message>HikariProxyPreparedStatement@1763337381 wrapping com.mysql.cj.jdbc.ClientPreparedStatement: select id,name,role from user where id=101</message>
+  <thread>18</thread>
+  <message>HikariProxyPreparedStatement@853942513 wrapping com.mysql.cj.jdbc.ClientPreparedStatement: select id,name,role from user where id=101</message>
 </record>

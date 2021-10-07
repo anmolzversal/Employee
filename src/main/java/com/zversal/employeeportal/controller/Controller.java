@@ -1,16 +1,19 @@
 package com.zversal.employeeportal.controller;
+
 import static com.zversal.employeeportal.Main.employeedao;
 import static com.zversal.employeeportal.Main.gson;
 import static com.zversal.employeeportal.Main.loggerutil;
 import java.util.HashMap;
 import java.util.logging.Level;
 
+import static com.zversal.employeeportal.client.ClientTest.task;
 
 import spark.Route;
 
 public class Controller
 {
 	public static final Route readById = (req, res) -> {
+		task.call();
 		HashMap<String,Object> map=new HashMap<>();
 		try
 		{
