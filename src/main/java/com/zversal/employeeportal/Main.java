@@ -16,6 +16,7 @@ import com.google.gson.GsonBuilder;
 import com.zversal.employeeeportal.dao.EmployeeDao;
 import com.zversal.employeeportal.controller.Controller;
 import com.zversal.employeeportal.db.DatabaseManager;
+import com.zversal.employeeportal.service.RemoteService;
 import com.zversal.employeeportal.util.LoggerUtil;
 import com.zversal.employeeportal.util.PropertyReader;
 import com.zversal.employeeportal.client.ClientTest;
@@ -30,20 +31,24 @@ public class Main {
 	public static LoggerUtil loggerutil=new LoggerUtil();
 	public static DatabaseManager db=new DatabaseManager();
 	public static ClientTest clienttest=new ClientTest();
+	static RemoteService remoteService=new RemoteService();
     public static void main(String[] args) {
     	loggerutil.getLog();
-		port(propertyreader.getPort()); //
+		port(propertyreader.getPort());
     	before((request, response) -> {
-       	    if (clienttest==null) {
-       	        halt(401, "You are not welcome here");
+       	    if (ClientTest.service()==false) {
+       	    	halt(401,"You are not welcome here");
+       	    }
+       	    else {
+       	    	path("/user",() -> {
+       	    	 get("/read/:id",Controller.readById,gson::toJson);
+       	         post("/create",Controller.createUser,gson::toJson);
+       	         put("/update",Controller.updateUser,gson::toJson);
+       	         delete("/delete/:id",Controller.deleteUser,gson::toJson);
+       	     });
        	    }
     	});
-    	path("/user",() -> {
-        get("/read/:id",Controller.readById,gson::toJson);
-        post("/create",Controller.createUser,gson::toJson);
-        put("/update",Controller.updateUser,gson::toJson);
-        delete("/delete/:id",Controller.deleteUser,gson::toJson);
-    });
+    	
     	after((request, response) -> {
     	    response.type("application/json");
     	});

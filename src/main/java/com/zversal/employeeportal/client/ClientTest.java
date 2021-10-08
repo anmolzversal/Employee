@@ -12,7 +12,7 @@ public class ClientTest
 {
 	public static RemoteService remoteService=new RemoteService();
 	public static Task task=new Task(remoteService);
-	public static void service()
+	public static boolean service()
 	{
 		ExecutorService executorService=null;
 		try {
@@ -48,5 +48,6 @@ public class ClientTest
 					executorService.shutdown();
 				}
 		}
+		return false;
 	}
 }

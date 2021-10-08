@@ -6,7 +6,7 @@ public class RemoteService
 	{
 		try
 		{
-			Thread.sleep(100);
+			Thread.sleep(2200);
 		}
 		catch(InterruptedException e)
 		{
