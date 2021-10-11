@@ -2,8 +2,8 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2021-10-08T16:28:07</date>
-  <millis>1633690687370</millis>
+  <date>2021-10-11T15:23:25</date>
+  <millis>1633946005717</millis>
   <sequence>0</sequence>
   <logger>log.txt</logger>
   <level>INFO</level>
@@ -11,4 +11,15 @@
   <method>getLog</method>
   <thread>1</thread>
   <message>init</message>
+</record>
+<record>
+  <date>2021-10-11T15:23:32</date>
+  <millis>1633946012030</millis>
+  <sequence>1</sequence>
+  <logger>log.txt</logger>
+  <level>INFO</level>
+  <class>com.zversal.employeeeportal.dao.EmployeeDao</class>
+  <method>readUser</method>
+  <thread>23</thread>
+  <message>HikariProxyPreparedStatement@935743925 wrapping com.mysql.cj.jdbc.ClientPreparedStatement: select id,name,role from user where id=101</message>
 </record>

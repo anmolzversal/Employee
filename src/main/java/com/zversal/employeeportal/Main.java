@@ -32,21 +32,26 @@ public class Main {
 	public static DatabaseManager db=new DatabaseManager();
 	public static ClientTest clienttest=new ClientTest();
 	static RemoteService remoteService=new RemoteService();
+	public static void result()
+	{
+		path("/user",() -> {
+ 	    	 get("/read/:id",Controller.readById,gson::toJson);
+ 	         post("/create",Controller.createUser,gson::toJson);
+ 	         put("/update",Controller.updateUser,gson::toJson);
+ 	         delete("/delete/:id",Controller.deleteUser,gson::toJson);
+ 	     });
+	}
     public static void main(String[] args) {
     	loggerutil.getLog();
 		port(propertyreader.getPort());
     	before((request, response) -> {
-       	    if (ClientTest.service()==false) {
-       	    	halt(401,"You are not welcome here");
-       	    }
-       	    else {
-       	    	path("/user",() -> {
-       	    	 get("/read/:id",Controller.readById,gson::toJson);
-       	         post("/create",Controller.createUser,gson::toJson);
-       	         put("/update",Controller.updateUser,gson::toJson);
-       	         delete("/delete/:id",Controller.deleteUser,gson::toJson);
-       	     });
-       	    }
+    		 if(ClientTest.service()==false) 
+             {
+                  halt(401,"No result");
+             }
+    		 else {
+    			 result();
+    		 }
     	});
     	
     	after((request, response) -> {
